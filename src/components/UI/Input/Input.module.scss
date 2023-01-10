@@ -6,13 +6,13 @@
   text-transform: capitalize;
 }
 
-.Input {
+@mixin Input($border-color, $focus-color) {
   font-family: 'Ubuntu Medium', Arial, Helvetica, sans-serif;
   color: $marine-blue;
   display: block;
   width: 100%;
   height: 45px;
-  border: 1px solid $light-gray;
+  border: 1px solid $border-color;
   border-radius: 8px;
   margin: 8px 0 24px 0;
   padding: 4px 0 4px 8px;
@@ -24,10 +24,25 @@
   }
 
   &:focus-visible {
-    outline: 1px solid $purplish-blue;
+    outline: 1px solid $focus-color;
   }
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.Success {
+  @include Input($light-gray, $purplish-blue);
+}
+
+.Error {
+  @include Input($strawberry-red, $strawberry-red);
+}
+
+.ErrorMessage {
+  font-family: 'Ubuntu Medium', Arial, Helvetica, sans-serif;
+  color: $strawberry-red;
+  text-transform: none;
+  float: right;
 }

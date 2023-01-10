@@ -7,7 +7,7 @@ const Form = () => {
     <>
       <div className={styles.Wrapper}>
         <Sidebar />
-        <StepContent step={1} />
+        <StepContent />
       </div>
     </>
   );

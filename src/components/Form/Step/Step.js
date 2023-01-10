@@ -1,6 +1,11 @@
+import { useContext } from 'react';
+import ActiveStepContext from '../../../context/ActiveStepContext';
+
 import styles from './Step.module.scss';
 
-const Step = ({ title = 'Your Info', step = 1, activeStep = 1 }) => {
+const Step = ({ title = 'Your Info', step = 1 }) => {
+  const { activeStep } = useContext(ActiveStepContext);
+
   return (
     <div className={styles.Container}>
       <div className={activeStep == step ? styles.Active : styles.InActive}>

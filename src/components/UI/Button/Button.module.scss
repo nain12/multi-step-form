@@ -20,10 +20,18 @@
   @include Button;
   background-color: $marine-blue;
   color: $white;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 
 .Confirm {
   @include Button;
   background-color: $purplish-blue;
   color: $white;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
