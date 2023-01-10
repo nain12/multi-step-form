@@ -1,0 +1,29 @@
+@import '../../../utils/colors.scss';
+
+@mixin Button {
+  display: inline-block;
+  font-family: 'Ubuntu Regular', Arial, Helvetica, sans-serif;
+  height: 48px;
+  width: 22%;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-transform: capitalize;
+}
+
+.Next {
+  @include Button;
+  background-color: $marine-blue;
+  color: $white;
+}
+
+.Confirm {
+  @include Button;
+  background-color: $purplish-blue;
+  color: $white;
+}
