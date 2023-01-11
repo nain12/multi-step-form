@@ -2,7 +2,7 @@
 
 @mixin Button {
   display: inline-block;
-  font-family: 'Ubuntu Regular', Arial, Helvetica, sans-serif;
+  font-family: 'Ubuntu Regular', Arial, sans-serif;
   height: 48px;
   width: 22%;
   border-radius: 8px;
@@ -23,6 +23,17 @@
 
   &:disabled {
     opacity: 0.5;
+  }
+}
+
+.Back {
+  @include Button;
+  background-color: transparent;
+  color: $cool-gray;
+  left: 0;
+
+  &:hover {
+    color: $marine-blue;
   }
 }
 

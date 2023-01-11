@@ -1,0 +1,44 @@
+@import '../../../utils/colors.scss';
+
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+
+  & > img {
+    align-self: flex-start;
+  }
+}
+
+.Info {
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  font-family: 'Ubuntu Medium', Arial, sans-serif;
+  color: $marine-blue;
+  font-size: 18px;
+  margin: 44px 0 8px 0;
+}
+
+.Price {
+  font-family: 'Ubuntu Regular', Arial, sans-serif;
+  color: $cool-gray;
+  font-size: 14px;
+}
+
+.Months {
+  font-family: 'Ubuntu Medium', Arial, sans-serif;
+  font-size: 14px;
+  color: $marine-blue;
+  margin: 8px 0 0 0;
+}

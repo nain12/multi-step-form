@@ -1,11 +1,85 @@
 import { useContext, useState } from 'react';
 import ActiveStepContext from '../../../context/ActiveStepContext';
 import Button from '../../UI/Button/Button';
+import CheckboxOptions from '../../UI/CheckboxOptions/CheckboxOptions';
 import Input from '../../UI/Input/Input';
+import Options from '../../UI/Options/Options';
+import ToggleSwitch from '../../UI/ToggleSwitch/ToggleSwitch';
 import styles from './StepContent.module.scss';
 
 const StepContent = () => {
   const { activeStep, setActiveStep } = useContext(ActiveStepContext);
+  const monthlyPlanOptions = [
+    {
+      title: 'Arcade',
+      price: 9,
+      monthsFree: 0
+    },
+    {
+      title: 'Advanced',
+      price: 12,
+      monthsFree: 0
+    },
+    {
+      title: 'Pro',
+      price: 15,
+      monthsFree: 0
+    }
+  ];
+
+  const yearlyPlanOptions = [
+    {
+      title: 'Arcade',
+      price: 90,
+      monthsFree: 2
+    },
+    {
+      title: 'Advanced',
+      price: 120,
+      monthsFree: 2
+    },
+    {
+      title: 'Pro',
+      price: 150,
+      monthsFree: 2
+    }
+  ];
+
+  const monthlyAddOns = [
+    {
+      title: 'Online service',
+      description: 'Access to multiplayer games',
+      price: 1
+    },
+    {
+      title: 'Larger storage',
+      description: 'Extra 1TB of cloud save',
+      price: 2
+    },
+    {
+      title: 'Customizable profile',
+      description: 'Custom theme on your profile',
+      price: 2
+    }
+  ];
+
+  const yearlyAddOns = [
+    {
+      title: 'Online service',
+      description: 'Access to multiplayer games',
+      price: 10
+    },
+    {
+      title: 'Larger storage',
+      description: 'Extra 1TB of cloud save',
+      price: 20
+    },
+    {
+      title: 'Customizable profile',
+      description: 'Custom theme on your profile',
+      price: 20
+    }
+  ];
 
   const [values, setValues] = useState({
     name: '',
@@ -19,6 +93,21 @@ const StepContent = () => {
     phone: undefined
   });
 
+  const [activePlan, setActivePlan] = useState({
+    title: undefined,
+    price: undefined
+  });
+
+  const [planOptions, setPlanOptions] = useState(monthlyPlanOptions);
+
+  const [activeDuration, setActiveDuration] = useState('Monthly');
+
+  const [addOns, setAddOns] = useState(() =>
+    activeDuration == 'Monthly' ? monthlyAddOns : yearlyAddOns
+  );
+
+  const [selectedAddOns, setSelectedAddOns] = useState([]);
+
   const onFormSubmit = (event) => {
     event.preventDefault();
   };
@@ -28,6 +117,8 @@ const StepContent = () => {
       return 'Personal info';
     } else if (step == 2) {
       return 'Select your plan';
+    } else if (step == 3) {
+      return 'Pick add-ons';
     }
   };
 
@@ -36,15 +127,23 @@ const StepContent = () => {
       return 'Please provide your name, email address and phone number.';
     } else if (step == 2) {
       return 'You have the option of monthly or yearly billing.';
+    } else if (step == 3) {
+      return 'Add-ons help enhance your gaming experience.';
     }
   };
 
   const onClickHandler = () => {
-    if (activeStep < 4) {
+    if (activeStep <= 4) {
       setActiveStep(activeStep + 1);
     } else {
       // programmatically route to thank you page
       setActiveStep(1);
+    }
+  };
+
+  const onBackClickHandler = () => {
+    if (activeStep > 1 && activeStep < 4) {
+      setActiveStep(activeStep - 1);
     }
   };
 
@@ -72,6 +171,25 @@ const StepContent = () => {
           <h2 className={styles.SubHeading}>{getSubHeadingContent(2)}</h2>
         </>
       );
+    } else if (step == 3) {
+      return (
+        <>
+          <h1 className={styles.Heading}>{getHeadingContent(3)}</h1>
+          <h2 className={styles.SubHeading}>{getSubHeadingContent(3)}</h2>
+        </>
+      );
+    }
+  };
+
+  const onDurationToggleHandler = () => {
+    if (activeDuration == 'Monthly') {
+      setActiveDuration('Yearly');
+      setPlanOptions(yearlyPlanOptions);
+      setAddOns(yearlyAddOns);
+    } else {
+      setActiveDuration('Monthly');
+      setPlanOptions(monthlyPlanOptions);
+      setAddOns(monthlyAddOns);
     }
   };
 
@@ -123,9 +241,47 @@ const StepContent = () => {
             />
           </>
         ) : activeStep == 2 ? (
-          <></>
+          <>
+            <Options
+              activePlan={activePlan}
+              setActivePlan={setActivePlan}
+              options={planOptions}
+            />
+            <ToggleSwitch
+              activeDuration={activeDuration}
+              onToggleHandler={onDurationToggleHandler}
+            />
+            <Button
+              type="Next"
+              label="Next Step"
+              disabled={activePlan && activePlan.title == undefined}
+              onClickHandler={onClickHandler}
+            />
+            <Button
+              type="Back"
+              label="Go Back"
+              onClickHandler={onBackClickHandler}
+            />
+          </>
         ) : activeStep == 3 ? (
-          <></>
+          <>
+            <CheckboxOptions
+              options={addOns}
+              selectedAddOns={selectedAddOns}
+              setSelectedAddOns={setSelectedAddOns}
+            />
+            <Button
+              type="Next"
+              label="Next Step"
+              disabled={activePlan && activePlan.title == undefined}
+              onClickHandler={onClickHandler}
+            />
+            <Button
+              type="Back"
+              label="Go Back"
+              onClickHandler={onBackClickHandler}
+            />
+          </>
         ) : activeStep == 4 ? (
           <></>
         ) : null}

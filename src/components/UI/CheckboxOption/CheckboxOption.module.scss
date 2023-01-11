@@ -1,0 +1,64 @@
+@import '../../../utils/colors.scss';
+
+.ListItem {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 80px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid $cool-gray;
+  padding: 8px 24px;
+}
+
+.Option {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.Checkbox {
+  width: 21px;
+  height: 21px;
+  border-radius: 4px;
+  align-self: center;
+  cursor: pointer;
+
+  &:checked {
+    accent-color: $purplish-blue;
+  }
+}
+
+.Info {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 6px;
+}
+
+.Title {
+  font-family: 'Ubuntu Medium', Arial, sans-serif;
+  font-size: 18px;
+  color: $marine-blue;
+}
+
+.Description {
+  font-family: 'Ubuntu Regular', Arial, sans-serif;
+  font-size: 16px;
+  color: $cool-gray;
+}
+
+.Price {
+  font-family: 'Ubuntu Regular', Arial, sans-serif;
+  font-size: 16px;
+  color: $purplish-blue;
+  align-self: center;
+}
+
+.Active {
+  border-color: $purplish-blue;
+  background-color: $pastel-blue-light;
+}

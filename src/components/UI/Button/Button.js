@@ -9,7 +9,13 @@ const Button = ({
   return (
     <button
       disabled={disabled}
-      className={type == 'Next' ? styles.Next : styles.Confirm}
+      className={
+        type == 'Next'
+          ? styles.Next
+          : type == 'Back'
+          ? styles.Back
+          : styles.Confirm
+      }
       onClick={onClickHandler}
     >
       {label}

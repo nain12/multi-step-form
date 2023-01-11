@@ -1,0 +1,8 @@
+@import '../../../utils/colors.scss';
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style-type: none;
+}

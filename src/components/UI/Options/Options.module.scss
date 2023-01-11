@@ -1,0 +1,27 @@
+@import '../../../utils/colors.scss';
+
+.List {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.ListItem {
+  border: 1px solid $light-gray;
+  width: 30%;
+  height: auto;
+  padding: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $marine-blue;
+  }
+}
+
+.Active {
+  display: flex;
+  flex-direction: column;
+  background-color: $pastel-blue-light;
+  border-color: $marine-blue;
+}

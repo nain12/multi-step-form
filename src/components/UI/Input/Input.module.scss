@@ -7,7 +7,7 @@
 }
 
 @mixin Input($border-color, $focus-color) {
-  font-family: 'Ubuntu Medium', Arial, Helvetica, sans-serif;
+  font-family: 'Ubuntu Medium', Arial, sans-serif;
   color: $marine-blue;
   display: block;
   width: 100%;
@@ -19,7 +19,7 @@
   font-size: 16px;
 
   &::-webkit-input-placeholder {
-    font-family: 'Ubuntu Medium', Arial, Helvetica, sans-serif;
+    font-family: 'Ubuntu Medium', Arial, sans-serif;
     color: $cool-gray;
   }
 
@@ -41,7 +41,7 @@
 }
 
 .ErrorMessage {
-  font-family: 'Ubuntu Medium', Arial, Helvetica, sans-serif;
+  font-family: 'Ubuntu Medium', Arial, sans-serif;
   color: $strawberry-red;
   text-transform: none;
   float: right;
