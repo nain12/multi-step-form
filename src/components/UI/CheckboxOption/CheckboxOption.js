@@ -7,7 +7,10 @@ const CheckboxOption = ({
   setSelectedAddOns = () => {}
 }) => {
   const { title = '', description = '', price = 0 } = option;
-  const [isChecked, setIsChecked] = useState(false);
+  const isOptionSelected =
+    selectedAddOns.findIndex((selectedAddOn) => selectedAddOn.title == title) >
+    -1;
+  const [isChecked, setIsChecked] = useState(isOptionSelected);
 
   const onChangeHandler = () => {
     setIsChecked(!isChecked);
@@ -39,10 +42,6 @@ const CheckboxOption = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
-  const isOptionSelected =
-    selectedAddOns.findIndex((selectedAddOn) => selectedAddOn.title == title) >
-    -1;
-
   return (
     <div
       className={
@@ -54,7 +53,7 @@ const CheckboxOption = ({
       <div className={styles.Option}>
         <input
           className={styles.Checkbox}
-          checked={isOptionSelected}
+          checked={isOptionSelected && isChecked}
           type="checkbox"
           value={title}
           id={title}
