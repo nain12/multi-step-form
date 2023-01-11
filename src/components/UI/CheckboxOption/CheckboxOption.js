@@ -39,16 +39,22 @@ const CheckboxOption = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
+  const isOptionSelected =
+    selectedAddOns.findIndex((selectedAddOn) => selectedAddOn.title == title) >
+    -1;
+
   return (
     <div
       className={
-        isChecked ? `${styles.ListItem} ${styles.Active}` : styles.ListItem
+        isOptionSelected
+          ? `${styles.ListItem} ${styles.Active}`
+          : styles.ListItem
       }
     >
       <div className={styles.Option}>
         <input
           className={styles.Checkbox}
-          checked={isChecked}
+          checked={isOptionSelected}
           type="checkbox"
           value={title}
           id={title}
