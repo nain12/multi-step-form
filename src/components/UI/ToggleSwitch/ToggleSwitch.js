@@ -15,7 +15,11 @@ const ToggleSwitch = ({ activeDuration = '', onToggleHandler = () => {} }) => {
         Monthly
       </label>
       <label className={styles.ToggleSwitch}>
-        <input type="checkbox" onChange={onToggle} />
+        <input
+          type="checkbox"
+          checked={activeDuration == 'Yearly'}
+          onChange={onToggle}
+        />
         <span className={styles.Switch} />
       </label>
       <label

@@ -119,6 +119,8 @@ const StepContent = () => {
       return 'Select your plan';
     } else if (step == 3) {
       return 'Pick add-ons';
+    } else if (step == 4) {
+      return 'Finishing up';
     }
   };
 
@@ -129,6 +131,8 @@ const StepContent = () => {
       return 'You have the option of monthly or yearly billing.';
     } else if (step == 3) {
       return 'Add-ons help enhance your gaming experience.';
+    } else if (step == 4) {
+      return 'Double-check everyting looks OK before confirming';
     }
   };
 
@@ -142,7 +146,7 @@ const StepContent = () => {
   };
 
   const onBackClickHandler = () => {
-    if (activeStep > 1 && activeStep < 4) {
+    if (activeStep > 1 && activeStep <= 4) {
       setActiveStep(activeStep - 1);
     }
   };
@@ -178,6 +182,13 @@ const StepContent = () => {
           <h2 className={styles.SubHeading}>{getSubHeadingContent(3)}</h2>
         </>
       );
+    } else if (step == 4) {
+      return (
+        <>
+          <h1 className={styles.Heading}>{getHeadingContent(4)}</h1>
+          <h2 className={styles.SubHeading}>{getSubHeadingContent(4)}</h2>
+        </>
+      );
     }
   };
 
@@ -191,6 +202,10 @@ const StepContent = () => {
       setPlanOptions(monthlyPlanOptions);
       setAddOns(monthlyAddOns);
     }
+  };
+
+  const onConfirmClickHandler = () => {
+    // programmatically navigate to thank you screen
   };
 
   return (
@@ -283,7 +298,19 @@ const StepContent = () => {
             />
           </>
         ) : activeStep == 4 ? (
-          <></>
+          <>
+            <Button
+              type="Confirm"
+              label="Confirm"
+              disabled={activePlan && activePlan.title == undefined}
+              onClickHandler={onConfirmClickHandler}
+            />
+            <Button
+              type="Back"
+              label="Go Back"
+              onClickHandler={onBackClickHandler}
+            />
+          </>
         ) : null}
       </form>
     </div>
