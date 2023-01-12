@@ -6,6 +6,7 @@ import Input from '../../UI/Input/Input';
 import Options from '../../UI/Options/Options';
 import ToggleSwitch from '../../UI/ToggleSwitch/ToggleSwitch';
 import Summary from '../Summary/Summary';
+import ThankYou from '../ThankYou/ThankYou';
 import styles from './StepContent.module.scss';
 
 const StepContent = () => {
@@ -109,6 +110,8 @@ const StepContent = () => {
 
   const [selectedAddOns, setSelectedAddOns] = useState([]);
 
+  const [showThankYouMessage, setShowThankYouMessage] = useState(undefined);
+
   const onFormSubmit = (event) => {
     event.preventDefault();
   };
@@ -138,11 +141,11 @@ const StepContent = () => {
   };
 
   const onClickHandler = () => {
-    if (activeStep <= 4) {
+    if (activeStep < 4) {
       setActiveStep(activeStep + 1);
     } else {
-      // programmatically route to thank you page
-      setActiveStep(1);
+      setActiveStep(4);
+      setShowThankYouMessage(true);
     }
   };
 
@@ -205,13 +208,9 @@ const StepContent = () => {
     }
   };
 
-  const onConfirmClickHandler = () => {
-    // programmatically navigate to thank you screen
-  };
-
   return (
     <div className={styles.Container}>
-      {getStepHeadings(activeStep)}
+      {!showThankYouMessage && getStepHeadings(activeStep)}
       <form onSubmit={onFormSubmit} autoComplete="off">
         {activeStep == 1 ? (
           <>
@@ -283,6 +282,7 @@ const StepContent = () => {
           <>
             <CheckboxOptions
               options={addOns}
+              activePlanDuration={activeDuration}
               selectedAddOns={selectedAddOns}
               setSelectedAddOns={setSelectedAddOns}
             />
@@ -300,22 +300,30 @@ const StepContent = () => {
           </>
         ) : activeStep == 4 ? (
           <>
-            <Summary
-              activePlan={activePlan}
-              activePlanDuration={activeDuration}
-              selectedAddOns={selectedAddOns}
-            />
-            <Button
-              type="Confirm"
-              label="Confirm"
-              disabled={activePlan && activePlan.title == undefined}
-              onClickHandler={onConfirmClickHandler}
-            />
-            <Button
-              type="Back"
-              label="Go Back"
-              onClickHandler={onBackClickHandler}
-            />
+            {showThankYouMessage ? (
+              <>
+                <ThankYou />
+              </>
+            ) : (
+              <>
+                <Summary
+                  activePlan={activePlan}
+                  activePlanDuration={activeDuration}
+                  selectedAddOns={selectedAddOns}
+                />
+                <Button
+                  type="Confirm"
+                  label="Confirm"
+                  disabled={activePlan && activePlan.title == undefined}
+                  onClickHandler={onClickHandler}
+                />
+                <Button
+                  type="Back"
+                  label="Go Back"
+                  onClickHandler={onBackClickHandler}
+                />
+              </>
+            )}
           </>
         ) : null}
       </form>
