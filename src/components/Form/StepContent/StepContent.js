@@ -5,6 +5,7 @@ import CheckboxOptions from '../../UI/CheckboxOptions/CheckboxOptions';
 import Input from '../../UI/Input/Input';
 import Options from '../../UI/Options/Options';
 import ToggleSwitch from '../../UI/ToggleSwitch/ToggleSwitch';
+import Summary from '../Summary/Summary';
 import styles from './StepContent.module.scss';
 
 const StepContent = () => {
@@ -132,7 +133,7 @@ const StepContent = () => {
     } else if (step == 3) {
       return 'Add-ons help enhance your gaming experience.';
     } else if (step == 4) {
-      return 'Double-check everyting looks OK before confirming';
+      return 'Double-check everything looks OK before confirming.';
     }
   };
 
@@ -299,6 +300,11 @@ const StepContent = () => {
           </>
         ) : activeStep == 4 ? (
           <>
+            <Summary
+              activePlan={activePlan}
+              activePlanDuration={activeDuration}
+              selectedAddOns={selectedAddOns}
+            />
             <Button
               type="Confirm"
               label="Confirm"

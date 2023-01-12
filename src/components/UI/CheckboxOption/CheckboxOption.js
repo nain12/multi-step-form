@@ -4,40 +4,55 @@ import styles from './CheckboxOption.module.scss';
 const CheckboxOption = ({
   option,
   selectedAddOns = [],
-  setSelectedAddOns = () => {}
+  setSelectedAddOns = () => {},
+  activePlanDuration = ''
 }) => {
+  console.log('AddOns load', selectedAddOns);
   const { title = '', description = '', price = 0 } = option;
-  const isOptionSelected =
-    selectedAddOns.findIndex((selectedAddOn) => selectedAddOn.title == title) >
-    -1;
-  const [isChecked, setIsChecked] = useState(isOptionSelected);
+  const toggledOptionIndex = selectedAddOns.findIndex((selectedAddOn) => {
+    return selectedAddOn.title == title;
+  });
+  const [isChecked, setIsChecked] = useState(toggledOptionIndex > -1);
+  const priceSuffix = activePlanDuration == 'Monthly' ? '/mo' : '/yr';
 
   const onChangeHandler = () => {
     setIsChecked(!isChecked);
   };
 
   const updateSelectedOptions = useCallback(() => {
-    console.log('Selected Addons', selectedAddOns);
     const toggledOption = { title, description, price };
-    if (isChecked) {
+
+    if (isChecked && toggledOptionIndex == -1) {
       setSelectedAddOns([...selectedAddOns, toggledOption]);
-    } else {
+    } else if (!isChecked) {
       if (selectedAddOns.length == 0) {
         return;
       }
 
-      setSelectedAddOns(
-        selectedAddOns.filter(
-          (options) => options.title !== toggledOption.title
-        )
+      const addOns = selectedAddOns.filter(
+        (_, index) => index !== toggledOptionIndex
       );
+      setSelectedAddOns(addOns);
     }
     console.log('Selected Options', selectedAddOns);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
+  const updateSelectedAddOnPrices = (addOns) => {
+    for (let addOn of addOns) {
+      if (addOn.title == option.title) {
+        addOn.price = option.price;
+      }
+    }
+    return addOns;
+  };
+
   useEffect(() => {
-    console.log('Checked', isChecked);
+    setSelectedAddOns(updateSelectedAddOnPrices([...selectedAddOns]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     updateSelectedOptions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
@@ -45,7 +60,7 @@ const CheckboxOption = ({
   return (
     <div
       className={
-        isOptionSelected
+        toggledOptionIndex !== -1
           ? `${styles.ListItem} ${styles.Active}`
           : styles.ListItem
       }
@@ -53,7 +68,7 @@ const CheckboxOption = ({
       <div className={styles.Option}>
         <input
           className={styles.Checkbox}
-          checked={isOptionSelected && isChecked}
+          checked={toggledOptionIndex !== -1}
           type="checkbox"
           value={title}
           id={title}
@@ -64,7 +79,10 @@ const CheckboxOption = ({
           <span className={styles.Description}>{description}</span>
         </div>
       </div>
-      <span className={styles.Price}>+{price}/mo</span>
+      <span className={styles.Price}>
+        +{price}
+        {priceSuffix}
+      </span>
     </div>
   );
 };

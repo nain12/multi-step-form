@@ -4,7 +4,8 @@ import CheckboxOption from '../CheckboxOption/CheckboxOption';
 const CheckboxOptions = ({
   options = [],
   selectedAddOns = [],
-  setSelectedAddOns = () => {}
+  setSelectedAddOns = () => {},
+  activePlanDuration = ''
 }) => {
   return (
     <ul className={styles.Container}>
@@ -15,6 +16,7 @@ const CheckboxOptions = ({
               option={option}
               selectedAddOns={selectedAddOns}
               setSelectedAddOns={setSelectedAddOns}
+              activePlanDuration={activePlanDuration}
             />
           </li>
         );
