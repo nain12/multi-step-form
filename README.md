@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](<./localhost*3000*(desktop).png>>)
+![](<./localhost*3000*(desktop).png>>>)
 ![](./localhost*3000*(iPhone SE).png)
 
 ### Links
@@ -51,33 +51,33 @@ Users should be able to:
 
 ### What I learned
 
-Form validation in React was a bit tricky for me.
+- Form validation in React was a bit tricky for me.
 
-I started using uncontrolled forms for the first step of the form.
+- I started using uncontrolled forms for the first step of the form.
 
-I soon realized that if I wanted to have real time validation instead of validating on the click of Submit button I had to switch to controlled forms.
+- I soon realized that if I wanted to have real time validation instead of validating on the click of Submit button I had to switch to controlled forms.
 
-Validation suddenly became a lot more easier with controlled forms.
+- Validation suddenly became a lot more easier with controlled forms.
 
-I also used ReactJs useState extensively to preserve the selection of each step of the form.
+- I also used ReactJs useState extensively to preserve the selection of each step of the form.
 
-Maintained a single source of truth in one component which made the flow of data predictable.
+- Maintained a single source of truth in one component which made the flow of data predictable.
 
-Making sure that the value of the state remained consistent depending on any user action anywhere along the steps was a challenge.
+- Making sure that the value of the state remained consistent depending on any user action anywhere along the steps was a challenge.
 
-Provided default values for props everywhere to ensure that the app doesn't break unexpectedly.
+- Provided default values for props everywhere to ensure that the app doesn't break unexpectedly.
 
-Separating out the UI components into a separate folder helped me keep the code organized and clean.
+- Separating out the UI components into a separate folder helped me keep the code organized and clean.
 
-Learned how to use mixins in CSS modules to avoid writing duplicate code.
+- Learned how to use mixins in CSS modules to avoid writing duplicate code.
 
 ### Continued development
 
-I want to keep learning how to write less CSS code and make my designs more responsive.
+- I want to keep learning how to write less CSS code and make my designs more responsive.
 
-I want to focus on responsive typography in the future.
+- I want to focus on responsive typography in the future.
 
-I want to learn more about how to use CSS Grid more effectively.
+- I want to learn more about how to use CSS Grid more effectively.
 
 ### Useful resources
 
