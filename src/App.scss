@@ -13,5 +13,7 @@ label {
 @include for-phone {
   body {
     background-color: $light-blue;
+    overflow: scroll;
+    height: 800px;
   }
 }
