@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](<./localhost*3000*(desktop).png>>>)
-![](./localhost*3000*(iPhone SE).png)
+![](./desktop.png)
+![](./iPhone.png)
 
 ### Links
 
