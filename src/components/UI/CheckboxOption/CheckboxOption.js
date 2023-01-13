@@ -7,7 +7,6 @@ const CheckboxOption = ({
   setSelectedAddOns = () => {},
   activePlanDuration = ''
 }) => {
-  console.log('AddOns load', selectedAddOns);
   const { title = '', description = '', price = 0 } = option;
   const toggledOptionIndex = selectedAddOns.findIndex((selectedAddOn) => {
     return selectedAddOn.title == title;
@@ -34,7 +33,6 @@ const CheckboxOption = ({
       );
       setSelectedAddOns(addOns);
     }
-    console.log('Selected Options', selectedAddOns);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isChecked]);
 
