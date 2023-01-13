@@ -1,5 +1,10 @@
 @import '../../../utils/colors.scss';
 @import '../../../utils/fonts.scss';
+@import '../../../utils/queries.scss';
+
+:root {
+  --width: 94%;
+}
 
 .Container {
   position: relative;
@@ -19,4 +24,40 @@
   font-size: 18px;
   color: $cool-gray;
   margin: 0 0 32px 0;
+}
+
+@include for-phone {
+  .Container {
+    position: absolute;
+    width: var(--width);
+    margin: 0 auto;
+    height: auto;
+    top: 60%;
+    left: calc(50% - var(--width) / 2);
+    background-color: $white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  .Heading {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .SubHeading {
+    margin: 8px 0 30px 0;
+    line-height: 1.25;
+    font-size: 18px;
+  }
+
+  .ButtonContainer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 90px;
+    width: 100%;
+    background: white;
+    z-index: -1;
+  }
 }

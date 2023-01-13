@@ -196,15 +196,32 @@ const StepContent = () => {
     }
   };
 
+  const updateActivePlanPrice = (planOptions) => {
+    if (!activePlan) {
+      return;
+    }
+    const toggledActivePlan = planOptions.find(
+      (planOption) => planOption.title == activePlan.title
+    );
+    if (activePlan) {
+      setActivePlan({
+        title: activePlan.title,
+        price: toggledActivePlan.price
+      });
+    }
+  };
+
   const onDurationToggleHandler = () => {
     if (activeDuration == 'Monthly') {
       setActiveDuration('Yearly');
       setPlanOptions(yearlyPlanOptions);
       setAddOns(yearlyAddOns);
+      updateActivePlanPrice(yearlyPlanOptions);
     } else {
       setActiveDuration('Monthly');
       setPlanOptions(monthlyPlanOptions);
       setAddOns(monthlyAddOns);
+      updateActivePlanPrice(monthlyPlanOptions);
     }
   };
 
@@ -240,20 +257,22 @@ const StepContent = () => {
               required
               isError={errors && errors.phone}
             />
-            <Button
-              type="Next"
-              label="Next Step"
-              onClickHandler={onClickHandler}
-              disabled={
-                !values.name ||
-                !values.name.trim() ||
-                !values.email ||
-                !values.email.trim() ||
-                !values.phone ||
-                !values.phone.trim() ||
-                (errors && (errors.name || errors.email || errors.phone))
-              }
-            />
+            <div className={styles.ButtonContainer}>
+              <Button
+                type="Next"
+                label="Next Step"
+                onClickHandler={onClickHandler}
+                disabled={
+                  !values.name ||
+                  !values.name.trim() ||
+                  !values.email ||
+                  !values.email.trim() ||
+                  !values.phone ||
+                  !values.phone.trim() ||
+                  (errors && (errors.name || errors.email || errors.phone))
+                }
+              />
+            </div>
           </>
         ) : activeStep == 2 ? (
           <>
@@ -266,17 +285,19 @@ const StepContent = () => {
               activeDuration={activeDuration}
               onToggleHandler={onDurationToggleHandler}
             />
-            <Button
-              type="Next"
-              label="Next Step"
-              disabled={activePlan && activePlan.title == undefined}
-              onClickHandler={onClickHandler}
-            />
-            <Button
-              type="Back"
-              label="Go Back"
-              onClickHandler={onBackClickHandler}
-            />
+            <div className={styles.ButtonContainer}>
+              <Button
+                type="Next"
+                label="Next Step"
+                disabled={activePlan && activePlan.title == undefined}
+                onClickHandler={onClickHandler}
+              />
+              <Button
+                type="Back"
+                label="Go Back"
+                onClickHandler={onBackClickHandler}
+              />
+            </div>
           </>
         ) : activeStep == 3 ? (
           <>
@@ -286,17 +307,19 @@ const StepContent = () => {
               selectedAddOns={selectedAddOns}
               setSelectedAddOns={setSelectedAddOns}
             />
-            <Button
-              type="Next"
-              label="Next Step"
-              disabled={activePlan && activePlan.title == undefined}
-              onClickHandler={onClickHandler}
-            />
-            <Button
-              type="Back"
-              label="Go Back"
-              onClickHandler={onBackClickHandler}
-            />
+            <div className={styles.ButtonContainer}>
+              <Button
+                type="Next"
+                label="Next Step"
+                disabled={activePlan && activePlan.title == undefined}
+                onClickHandler={onClickHandler}
+              />
+              <Button
+                type="Back"
+                label="Go Back"
+                onClickHandler={onBackClickHandler}
+              />
+            </div>
           </>
         ) : activeStep == 4 ? (
           <>
@@ -311,17 +334,19 @@ const StepContent = () => {
                   activePlanDuration={activeDuration}
                   selectedAddOns={selectedAddOns}
                 />
-                <Button
-                  type="Confirm"
-                  label="Confirm"
-                  disabled={activePlan && activePlan.title == undefined}
-                  onClickHandler={onClickHandler}
-                />
-                <Button
-                  type="Back"
-                  label="Go Back"
-                  onClickHandler={onBackClickHandler}
-                />
+                <div className={styles.ButtonContainer}>
+                  <Button
+                    type="Confirm"
+                    label="Confirm"
+                    disabled={activePlan && activePlan.title == undefined}
+                    onClickHandler={onClickHandler}
+                  />
+                  <Button
+                    type="Back"
+                    label="Go Back"
+                    onClickHandler={onBackClickHandler}
+                  />
+                </div>
               </>
             )}
           </>

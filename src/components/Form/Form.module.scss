@@ -1,4 +1,5 @@
 @import '../../utils/colors.scss';
+@import '../../utils/queries.scss';
 
 .Wrapper {
   background-color: white;
@@ -13,8 +14,20 @@
   gap: 22px;
 }
 
-@media (min-width: 1920px) {
+@include for-ipad-portrait {
   .Wrapper {
     width: 52%;
+  }
+}
+
+@include for-phone {
+  .Wrapper {
+    position: relative;
+    width: 100%;
+    height: 170px;
+    padding: 0;
+    border: none;
+    display: block;
+    margin: unset;
   }
 }

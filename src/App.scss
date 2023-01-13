@@ -1,9 +1,17 @@
+@import './utils/queries.scss';
+@import './utils/colors.scss';
 body {
   font-family: 'Ubuntu Regular', Arial, sans-serif;
   font-size: 16px;
 }
 
-/* label {
+label {
   font-family: 'Ubuntu Medium', Arial, sans-serif;
   font-size: 14px;
-} */
+}
+
+@include for-phone {
+  body {
+    background-color: $light-blue;
+  }
+}

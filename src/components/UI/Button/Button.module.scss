@@ -1,4 +1,5 @@
 @import '../../../utils/colors.scss';
+@import '../../../utils/queries.scss';
 
 @mixin Button {
   display: inline-block;
@@ -44,5 +45,22 @@
 
   &:disabled {
     opacity: 0.5;
+  }
+}
+
+@include for-phone {
+  .Next,
+  .Confirm {
+    position: fixed;
+    width: 30%;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .Back {
+    position: fixed;
+    width: 30%;
+    right: 20px;
+    bottom: 20px;
   }
 }

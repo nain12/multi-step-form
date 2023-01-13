@@ -1,4 +1,5 @@
 @import '../../../utils/colors.scss';
+@import '../../../utils/queries.scss';
 
 .Label {
   color: $marine-blue;
@@ -45,4 +46,9 @@
   color: $strawberry-red;
   text-transform: none;
   float: right;
+}
+
+@include for-phone {
+  .Label {
+  }
 }
